@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TESERASOFT</title>
+    <style type="text/css">
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #87CEEB;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px 0;
+        }
+        header {
+            background: #1E90FF;
+            color: #fff;
+            padding: 4px;
+            text-align: center;
+        }
+        nav {
+            background: #005f99;
+            padding: 10px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        nav a:hover {
+            background-color: #1E90FF;
+            color: #fff;
+            border-radius: 5px;
+        }
+        .slider {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+        .slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .slider img.active {
+            opacity: 1;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .product {
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, background-color 0.3s;
+            text-align: center;
+        }
+        .product img {
+            width: 100%;
+			max-width: 300px;
+            height: 160px;
+            border-radius: 5px;
+        }
+        .product h3 {
+            margin: 10px 0;
+        }
+        .product p {
+            color: #555;
+            font-weight: bold;
+        }
+        .product:hover {
+            transform: scale(1.05);
+            background-color: #add8e6;
+        }
+        footer {
+            background: #005f99;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+		
+		.about-box {
+    background: #e6f7ff;
+    border-left: 5px solid #1E90FF;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    max-width: 800px;
+    margin: auto;
+}
+.about-box p {
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+		table 
+		{
+            width: 40%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+		
+		/* Modal arka planı (saydam siyah) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal içeriği (beyaz kutu) */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    text-align: center;
+    position: relative;
+}
+
+/* Modal kapatma butonu */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Modal içindeki resim */
+#modal-img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+	margin-top:10px;
+	max-height:450px;
+}
+
+    </style>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            let images = document.querySelectorAll(".slider img");
+            let index = 0;
+            function changeSlide() {
+                images.forEach((img, i) => img.classList.remove("active"));
+                images[index].classList.add("active");
+                index = (index + 1) % images.length;
+            }
+            images[0].classList.add("active");
+            setInterval(changeSlide, 3000);
+        });
+		
+		var p1 = "p1.png", p2 = "p2.png", p3 = "p3.png", p4 = "p4.png" , p5 = "p5.png", p6 = "p6.png", p7 = "p7.png", p8 = "p8.png", p9 = "p9.png", p10 = "p10.png", p11 = "p11.png", p12 = "p12.png", p13 = "p13.png", p14 = "p14.png" , p15 = "p15.png", p16 = "p16.png";
+		
+		
+		function resims()
+		{
+			kk.src = p1;
+			ry.src = p2;
+			otop.src = p3;
+			gv.src = p4;
+			st.src = p5;
+			mhs.src = p6;
+			djt.src = p7;
+			uts.src = p8;
+			stk.src = p9;
+			mkn.src = p10;
+			mtl.src = p11;
+			nkl.src = p12;
+			yzlm.src = p13;
+			dtb.src = p14;
+			tknl.src = p15;
+			dnm.src = p16;
+		}
+		
+	function openModal(imgsrc, baslik, aciklama)
+	{
+		document.getElementById("modal-img").src = imgsrc;
+		document.getElementById("modal-title").innerText = baslik;
+		document.getElementById("modal-desc").innerText = aciklama;
+		document.getElementById("modal").style.display = "flex";
+	}
+    </script>
+</head>
+<body onload="javascript:resims();">
+	<div id="yukleniyor" style="text-align:center; background-color:ivory; position:absolute; z-index:2000; width: 250px; height: 250px; border:outset; top: 10px; left: 10px;">
+		<img src="yukleniyor.gif" style="width:250px; height:230px;" /><br/>
+		<label>Yükleniyor...</label>
+	</div>
+	
+    <header>
+        <h1>TESERASOFT</h1>
+    </header>
+    <nav>
+        <a href="#anasayfa">ANA SAYFA</a>
+        <a href="#programlar">PROGRAMLARIMIZ</a>
+        <a href="#hizmetler">HİZMETLERİMİZ</a>
+        <a href="#hakkimizda">HAKKIMIZDA</a>
+        <a href="#iletisim">İLETİŞİM</a>
+    </nav>
+    <div id="anasayfa" class="slider">
+        <img src="banner1.jpg" alt="Slider 1">
+        <img src="banner2.jpg" alt="Slider 2">
+    </div>
+	
+    <div id="programlar" class="container">
+        <h2>Geliştirdiğimiz Yazılımlarımız</h2>
+        <div class="product-grid">
+            <div class="product" onclick="javascript:openModal(kk.src, kk.alt, 'Üretimde kalite kontrol süreçlerini yönetir ve raporlar. Hatalı ve hatasız ürün adedini görebilir en çok hangi tip hatalar var hangi tip üründen çok hata gelmiş gibi detaylı ayrıntıları gösterir.');">
+                <img id="kk" src="" alt="Kalite Kontrol Takip Programı">
+                <h3>Kalite Kontrol Takip Programı</h3>
+                <p>₺13450</p>
+            </div>
+            <div class="product">
+                <img id="ry" src="" alt="Restoran Yönetim Sistemi" onclick="javascript:openModal(ry.src, ry.alt, 'Sipariş, stok ve müşteri yönetimi sağlar. Gün sonu ve kasa raporu gibi raporlar sunar.');">
+                <h3>Restoran Yönetim Sistemi</h3>
+                <p>₺7500</p>
+            </div>
+			
+			<div class="product">
+                <img id="otop" src="" alt="Otopark Yönetim Sistemi" onclick="javascript:openModal(otop.src, otop.alt, 'Otopark giriş-çıkışlarını ve ücretlendirmeyi takip eder.');">
+                <h3>Otopark Yönetim Sistemi</h3>
+                <p>₺7000</p>
+            </div>
+			
+			<div class="product">
+                <img id="gv" src="" alt="Güvenlik Kayıt Programı" onclick="javascript:openModal(gv.src, gv.alt, 'Giriş-çıkış güvenliği için personel ve ziyaretçi kayıtları oluşturur. Ziyaretçilerin araçlarını kayıt altına alır.');">
+                <h3>Güvenlik Kayıt Programı</h3>
+                <p>₺4049</p>
+            </div>
+        </div>
+		
+		<div class="product-grid">
+			<div class="product">
+                <img id="st" src="" alt="Barkodlu Satış Programı" onclick="javascript:openModal(st.src, st.alt, 'Barkod destekli hızlı satış ve stok yönetimi sunar. Gün sonu ve satış raporlarını gösterir.');">
+                <h3>Market Satış Programı</h3>
+                <p>₺3500</p>
+            </div>
+			
+			<div class="product">
+                <img id="djt" src="" alt="Dijital Ölçüm Sistemi" onclick="javascript:openModal(djt.src, djt.alt, 'Tekstil ölçüm süreçlerini dijitalleştirir. Ürün ve pastal ölçülerini kaydetmenizi, raporlamanızı sağlar.');">
+                <h3>Dijital Ölçüm Sistemi</h3>
+                <p>₺8700</p>
+            </div>
+			
+			<div class="product">
+                <img id="mhs" src="" alt="Nethesap Muhasebe Programı" onclick="javascript:openModal(mhs.src, mhs.alt, 'Cari, stok, satış ve fatura yönetimi yapabilen kapsamlı muhasebe yazılımıdır. Detaylı cari hareket, stok hareket, fatura ve satış raporlarını gösterir.');">
+                <h3>Nethesap Muhasebe Programı</h3>
+                <p>₺6500</p>
+            </div>
+			
+			<div class="product">
+                <img id="uts" src="" alt="Üretim Takip Sistemi" onclick="javascript:openModal(uts.src, uts.alt, 'Fabrikalar için anlık üretim takibi ve performans ölçümü sağlar. Detaylı sipariş / ürün adetleri ile ilgili raporlar sunar.');">
+                <h3>Üretim Takip Sistemi</h3>
+                <p>₺14500</p>
+            </div>
+		</div>
+		
+		<div class="product-grid">
+			<div class="product">
+				<img id="stk" src="" alt="Stok Yönetim Sistemi" onclick="javascript:openModal(stk.src, stk.alt, 'Depo, dolap ve raf bazında detaylı stok takibi sunar.');" >
+                <h3>Stok Yönetim Sistemi</h3>
+                <p>₺10250</p>
+			</div>
+			
+			<div class="product">
+				<img id="mkn" src="" alt="Makine Bakım Takip Programı" onclick="javascript:openModal(mkn.src, mkn.alt, 'Makine bakım, arıza, tamir ve bakım planlarını takip eder. Detaylı arıza tamir ve bakım raporları sunar.');">
+                <h3>Makine Bakım Takip Programı</h3>
+                <p>₺12300</p>
+			</div>
+			
+			<div class="product">
+				<img id="mtl" src="" alt="Metal Tarama Takip Sistemi" onclick="javascript:openModal(mtl.src, mtl.alt, 'Tekstil fabrikalarında iğne tespiti ve kontrol raporları oluşturur.');">
+                <h3>Metal Tarama Takip Sistemi</h3>
+                <p>₺10150</p>
+			</div>
+			
+			<div class="product">
+				<img id="nkl" src="" alt="Nakliyat Takip Sistemi" onclick="javascript:openModal(nkl.src, nkl.alt, 'Nakliye süreçlerini kayıt altına alır ve taşıma senedi oluşturur. Gerekli belgeleri tarayıp sisteme kaydeder.');">
+                <h3>Nakliyat Takip Sistemi</h3>
+                <p>₺4250</p>
+			</div>
+			
+		</div>
+    </div>
+	
+    <div id="hizmetler" class="container">
+        <h2>Hizmetlerimiz</h2>
+        <div class="product-grid">
+            <div class="product">
+			<img id="yzlm"  src="" alt="YAZILIM GELİŞTİRME" />
+				<h3>Yazılım Geliştirme</h3>
+			</div>
+		
+            <div class="product">
+				<img id="dtb" src="" alt="Veritabanı Hizmeti" />
+				<h3>Veritabanı Hizmeti</h3>
+			</div>
+		
+            <div class="product">
+				<img src="" id="tknl" alt="Teknoloji Geliştirme" />
+				<h3>Teknoloji Geliştirme</h3>
+			</div>
+		
+            <div class="product">
+				<img src="" id="dnm" alt="Donanım Tedariği" />
+				<h3>Donanım Tedariği</h3>
+			</div>
+		</div>
+    </div>
+    
+	<div id="hakkimizda" class="container">
+    <h2>Hakkımızda</h2>
+    <div class="about-box">
+        <p>
+            15 yılı aşkın süredir yazılım sektöründe öncü bir firma olarak faaliyet göstermekteyiz. Çeşitli sektörlere özel yazılım çözümleri geliştirerek, iş süreçlerini daha verimli ve sürdürülebilir hale getiriyoruz. Geliştirdiğimiz yazılımlar en son teknolojileri kullanarak tasarlanmış olup, güvenlik ve performans açısından yüksek standartlara sahiptir.
+        </p>
+        <p>
+            Sadece yazılım geliştirmekle kalmıyor, aynı zamanda teknoloji danışmanlığı hizmetleri sunarak müşterilerimize dijital dönüşüm süreçlerinde rehberlik ediyoruz. Fabrikalara özel yazılım ve teknoloji çözümleriyle üretim süreçlerini optimize ediyor, işletmelerin verimliliğini artırıyoruz.
+        </p>
+        <p>
+            Bizi tercih eden müşteriler, güvenilir ve yenilikçi çözümlerle işlerini daha ileriye taşımanın rahatlığını yaşarlar. Çünkü biz, sadece bugünün değil, geleceğin teknolojilerini de yakından takip ederek müşterilerimize en iyi hizmeti sunmayı hedefliyoruz.
+        </p>
+    </div>
+</div>
+
+	
+    <div id="iletisim" class="container">
+	<center>
+        <table>
+		<thead><tr><th colspan="2" style="text-align:center;"><h2>İletişim</h2></th></tr></thead>
+		<tbody>
+			<tr><td>Yetkili</td><td>İsmail ÖZEL</td></tr>
+			<tr><td>Telefon</td><td>+90537 639 88 86</td></tr>
+			<tr><td>Mail</td><td>programci42@gmail.com</td></tr>
+		</tbody>
+		</table>
+	</center>	
+    </div>
+	
+	<div id="modal" class="modal">
+    <div class="modal-content">
+        <span id="btncls" class="close" onmouseover="btncls.style.color = 'red';" onmouseout="btncls.style.color = 'black';" onclick="javascript:modal.style.display = '';">&times;</span>
+        <img id="modal-img" src="" alt="Ürün Resmi">
+        <h3 id="modal-title">asd</h3>
+        <div id="modal-desc" class="about-box"><p>Açıklama</p></div>
+    </div>
+</div>
+	
+    <footer>
+        <p>&copy; 2025 Lider Yazılım. Tüm hakları saklıdır.</p>
+    </footer>
+	
+	<script type="text/javascript"> yukleniyor.style.visibility = "hidden"; </script>
+</body>
+</html>
